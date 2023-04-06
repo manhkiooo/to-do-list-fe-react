@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('Checkout') {
+      steps {
+        git branch: 'master', url: 'https://github.com/manhkiooo/to-do-list-fe-react.git'
+      }
+    }
     stage('Install dependencies') {
       steps {
         sh 'npm install'
