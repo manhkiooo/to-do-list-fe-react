@@ -18,10 +18,10 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        // Use a Kubernetes deployment, for example
-        kubernetesDeploy (
+        containerTemplate(name: 'nodejs', image: 'node:14-alpine', command: 'cat', ttyEnabled: true) {
+          kubernetesDeploy()
           sh 'npm start'
-        )
+        }
       }
     }
   }
